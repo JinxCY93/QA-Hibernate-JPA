@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.Query;
  * QuestionRepository
  */
 public interface QuestionRepository extends JpaRepository<Question, Long> {
-    List<Question> findByUserId(Long userId);
+    List<Question> findByUserId(long userId);
+    List<Question> findByDescriptionLike(String description);
 }

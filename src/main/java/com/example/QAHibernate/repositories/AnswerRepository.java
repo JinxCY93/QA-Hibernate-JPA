@@ -8,5 +8,6 @@ import org.springframework.data.jpa.repository.Query;
  * AnswerRepository
  */
 public interface AnswerRepository extends JpaRepository<Answer, Long>{
-    List<Answer> findByUserId(Long userId);
+    List<Answer> findAllByUserId(long userId);
+    List<Answer> findAllByQuestionId(long questionId);
 }

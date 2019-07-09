@@ -28,7 +28,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class UserController {
     @Autowired
     UserRepository userRepository;
+    @Autowired
     AnswerRepository answerRepository;
+    @Autowired
     QuestionRepository questionRepository;
 
     @GetMapping(value="/users", produces="application/json")
@@ -42,14 +44,15 @@ public class UserController {
     }
 
     @DeleteMapping(value ="/users/{id}")
-    public void deleteUser (@PathVariable("id") long id){
+    public void deleteUser(@RequestBody User user2, @PathVariable("id") long id){
         User user = userRepository.findById(id).orElse(new User());
-        if(user.getId() !=null){
-            List<Answer> answer = answerRepository.findByUserId(user.getId());
+        if(user.getId() !=0L){
+            List<Answer> answer = answerRepository.findAllByUserId(user.getId());
             answerRepository.deleteAll(answer);
             List <Question> question = questionRepository.findByUserId(user.getId());
             questionRepository.deleteAll(question);
             userRepository.delete(user);
         }
+        // return user2;
     }
 }

@@ -17,22 +17,22 @@ import org.hibernate.annotations.DynamicUpdate;
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name ="text")
     private String text;
 
     @Column (name="userId", updatable = false)
-    private Long userId;
+    private long userId;
 
     @Column (name="questionId" , updatable = false)
-    private Long questionId;
+    private long questionId;
 
-    public Long getId() {
+    public long getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -44,20 +44,19 @@ public class Answer {
         this.text = text;
     }
 
-    public Long getUserId() {
+    public long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
-    public Long getQuestionId() {
+    public long getQuestionId() {
         return this.questionId;
     }
 
-    public void setQuestionId(Long questionId) {
+    public void setQuestionId(long questionId) {
         this.questionId = questionId;
-    }
-  
+    }  
 }
