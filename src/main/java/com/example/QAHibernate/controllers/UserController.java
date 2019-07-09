@@ -8,7 +8,7 @@ import com.example.QAHibernate.entities.User;
 import com.example.QAHibernate.repositories.AnswerRepository;
 import com.example.QAHibernate.repositories.QuestionRepository;
 import com.example.QAHibernate.repositories.UserRepository;
-
+import com.example.QAHibernate.response_formats.QAJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,5 +54,17 @@ public class UserController {
             userRepository.delete(user);
         }
         // return user2;
+    }
+
+    @GetMapping(value="users/{id}/submissions", produces = "application/json")
+    public QAJson displayUserQA(@PathVariable long id)
+    {
+        QAJson qaJson = new QAJson();
+        List<Question> userQuest = questionRepository.findByUserId(id);
+        List<Answer> userAns = answerRepository.findAllByUserId(id);
+        qaJson.setQuestion(userQuest);
+        qaJson.setAnswer(userAns);
+
+        return qaJson;
     }
 }

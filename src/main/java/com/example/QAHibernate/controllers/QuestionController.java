@@ -39,7 +39,7 @@ public class QuestionController {
     @GetMapping(value="/questions", produces ="application/json")
     public List<Question> displayQuestionsByDesc(@RequestParam (required=false) String description){
         if(description!=null){
-            return questionRepository.findByDescriptionLike(description);
+            return questionRepository.findByDescriptionContaining(description);
         }
         return questionRepository.findAll();
     }

@@ -10,5 +10,8 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface QuestionRepository extends JpaRepository<Question, Long> {
     List<Question> findByUserId(long userId);
-    List<Question> findByDescriptionLike(String description);
+    List<Question> findByDescriptionContaining(String description);
+
+    // @Query("select q.description from question q where q.userId=?1")
+    // List<Question> findAllByUserId(long userId);
 }
